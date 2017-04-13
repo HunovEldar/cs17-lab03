@@ -1,5 +1,18 @@
 #include <iostream>
 #include <vector>
+enum Scale {
+    Kelvin='K',
+    Celsus='C',
+    Farengete='F'
+};
+
+struct Temperature{
+    Scale scale;
+    double value;
+};
+
+
+
 
 using namespace std;
 
