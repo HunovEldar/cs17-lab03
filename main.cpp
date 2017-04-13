@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+using namespace std;
 enum Scale {
     Kelvin='K',
     Celsus='C',
@@ -9,12 +10,30 @@ enum Scale {
 struct Temperature{
     Scale scale;
     double value;
+
 };
+//Temperature t;
+
+istream & operator>>(istream & in, Temperature & t){
+    char symbol;
+    in>>t.value;
+    in>>symbol;
+    switch(symbol)
+    {
+    case 'K':
+        t.scale=Kelvin;
+        break;
+    case 'C':
+        t.scale=Celsus;
+        break;
+    case 'F':
+        t.scale=Farengete;
+        break;
+    }
+    return in;
+}
 
 
-
-
-using namespace std;
 
 int
 main() {

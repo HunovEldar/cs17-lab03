@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
-project(lab01)
+project(cs17-lab03)
 set(CMAKE_EXE_LINKER_FLAGS -static)
 set(SOURCE_FILES main.cpp)
 add_executable(lab01 ${SOURCE_FILES})
