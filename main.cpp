@@ -1,6 +1,11 @@
 #include <iostream>
 #include <vector>
+#include <sstream>
+#include <cassert>
 using namespace std;
+
+
+
 enum Scale {
     Kelvin='K',
     Celsus='C',
@@ -13,6 +18,9 @@ struct Temperature{
 
 };
 //Temperature t;
+
+
+
 
 istream & operator>>(istream & in, Temperature & t){
     char symbol;
@@ -33,10 +41,27 @@ istream & operator>>(istream & in, Temperature & t){
     return in;
 }
 
-
+void test_Temperature_input() {
+    istringstream in("4K");
+    Temperature t;
+    in >> t;
+    assert(t.value == 4);
+    assert(t.scale == Kelvin);
+    istringstream in1("12C");
+    in1 >> t;
+    assert(t.value == 12);
+    assert(t.scale == Celsus);
+    istringstream in2("17F");
+    in2 >> t;
+    assert(t.value == 17);
+    assert(t.scale == Farengete);
+}
 
 int
 main() {
+
+     test_Temperature_input;
+
     size_t number_count;
     cerr << "Enter number count: ";
     cin >> number_count;
