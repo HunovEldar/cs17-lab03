@@ -80,6 +80,12 @@ Temperature convert(const Temperature & from,Scale scale)
     to.scale=scale;
     return to;
 }
+bool operator<(const Temperature & lhs,Temperature & rhs){
+    Temperature out;
+    out = convert(lhs,rhs.scale);
+    return lhs.value > rhs.value;
+}
+
 
 int main() {
 
