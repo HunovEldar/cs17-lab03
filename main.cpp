@@ -57,8 +57,31 @@ void test_Temperature_input() {
     assert(t.scale == Farengete);
 }
 
-int
-main() {
+Temperature convert(const Temperature & from,Scale scale)
+{
+    double kel;
+    Temperature to;
+    switch (from.scale){
+    case Kelvin: kel= from.value;
+        break;
+    case Celsus: kel= from.value+273;
+        break;
+    case Farengete: kel= 1.8*(from.value-273)+32;
+        break;
+    }
+    switch(scale){
+    case Kelvin: to.value = kel;
+        break;
+    case Celsus: to.value = kel-273;
+        break;
+    case Farengete: to.value = (kel-32)/1.8+273;
+        break;
+    }
+    to.scale=scale;
+    return to;
+}
+
+int main() {
 
      test_Temperature_input;
 
