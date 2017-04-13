@@ -83,7 +83,7 @@ Temperature convert(const Temperature & from,Scale scale)
 bool operator<(const Temperature & lhs,Temperature & rhs){
     Temperature out;
     out = convert(lhs,rhs.scale);
-    return lhs.value > rhs.value;
+    return lhs.value < rhs.value;
 }
 
 
@@ -91,23 +91,26 @@ int main() {
 
      test_Temperature_input;
 
-    size_t number_count;
+    size_t temp_count;
     cerr << "Enter number count: ";
-    cin >> number_count;
+    cin >> temp_count;
 
     cerr << "Enter numbers: ";
-    vector<double> numbers(number_count);
-    for (size_t i = 0; i < number_count; i++) {
-        cin >> numbers[i];
+    vector<Temperature> temp(temp_count);
+    for (size_t i = 0; i < temp_count; i++) {
+        cin >> temp[i];
     }
-
+    vector<Temperature> temprez(temp_count);
+    for (size_t i = 0; i < temp_count; i++) {
+         temprez[i]=convert(temp[i], Kelvin);
+    }
     size_t column_count;
     cerr << "Enter column count: ";
     cin >> column_count;
 
-    double min = numbers[0];
-    double max = numbers[0];
-    for (double number : numbers) {
+    double min = temprez[0].value;
+    double max = temprez[0].value;
+    for (double number : temp) {
         if (number < min) {
             min = number;
         }
@@ -117,7 +120,7 @@ int main() {
     }
 
     vector<size_t> counts(column_count);
-    for (double number : numbers) {
+    for (double number : temp) {
         size_t column = (size_t)((number - min) / (max - min) * column_count);
         if (column == column_count) {
             column--;
