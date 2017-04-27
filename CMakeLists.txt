@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.0)
+project(cs17-lab03)
+set(CMAKE_EXE_LINKER_FLAGS -static)
+set(SOURCE_FILES main.cpp temperature.cpp)
+add_executable(lab01 ${SOURCE_FILES})
+add_executable(input_test test_input.cpp temperature.cpp)
+enable_testing()
+add_test(NAME test_temp_input COMMAND input_test )
